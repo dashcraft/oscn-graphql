@@ -1,0 +1,23 @@
+{
+  "name": "oscn-graphql",
+  "version": "1.0.0",
+  "description": "A graphql wrapper for the oscn alpha api.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "graphql",
+    "nodejs",
+    "fetch",
+    "oscn",
+    "court"
+  ],
+  "author": "Daniel Ashcraft",
+  "license": "MIT",
+  "dependencies": {
+    "graphql-yoga": "^1.17.4",
+    "oscn-js": "^1.0.4",
+    "s": "^0.1.1"
+  }
+}

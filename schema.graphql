@@ -1,0 +1,83 @@
+scalar Date
+scalar JSON
+
+type Query {
+  dockets(county:String!, case_number:String!):[Docket]
+  events(county:String!, case_number:String!): [Event]
+  styles(county:String!, case_number:String!): [Style]
+  counts(county:String!, case_number:String!): [Count]
+  parties(county:String!, case_number:String!): [Party]
+  attorneys(county:String!, case_number:String!): [Attorney]
+  ocis_cases(search_string: String!) : OCIS_RESPONSE
+  elastic_search(query:JSON): OCIS_RESPONSE
+}
+
+type Party {
+  party: String
+  party_type: String
+}
+
+type OCIS_RESPONSE {
+  took: Int
+  timed_out: Boolean
+  _shards : JSON
+  hits: JSON
+}
+
+type Attorney {
+  name: String
+  bar_number: String
+  address: String
+  city: String
+  state: String
+  zipcode: String
+  represented_party: String
+}
+
+type Event {
+  event_title : String
+  original_date : String
+  event_date : Date
+  event_minute : String
+  party : String
+  docket: String
+}
+
+type Count {
+  party: String
+  count: Int
+  offense_date: Date
+  filed_statute: String
+  filed_code: String
+  filed_as: String
+  disposed_statute: String
+  disposed_code: String
+  disposed_as: String
+  disposed_date: Date
+  disposition: String
+  disposition_minute: String
+}
+
+
+type Style {
+  Code : String
+  casenumber : Int,
+  case_type: String
+  short_style: String
+  filed_date: Date
+  closed_date: Date
+  status: Int
+  docket: String
+}
+
+type Docket {
+  docket_date : Date
+  docket_code : String
+  count : Int
+  docket_text : String
+  party: String
+  amount: Float
+  image_barcode: String
+}
+
+# https://www.oscn.net/dockets/GetDocument.aspx?ct=${county}&bc=${barcode}&cn=${case_number}&fmt=pdf
